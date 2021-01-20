@@ -36,8 +36,8 @@
      01. Slick slider
      ==========================*/
     $('.slide-1 ').slick({
-        autoplay: false,
-        autoplaySpeed: 2500,
+        autoplay: true,
+        autoplaySpeed: 4500,
     });
     $('.slide-1-section').slick({
         dots: false,
