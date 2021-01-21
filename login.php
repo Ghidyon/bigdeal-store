@@ -1,7 +1,7 @@
 <?php
-    require_once('app.php');
-    require_once(APP_ROOT . DS . 'includes' . DS . 'head.php');
-    require_once(APP_ROOT . DS . 'includes' . DS . 'nav.php');
+require_once('app.php');
+require_once(APP_ROOT . DS . 'includes' . DS . 'head.php');
+require_once(APP_ROOT . DS . 'includes' . DS . 'nav.php');
 ?>
 
 <!-- breadcrumb start -->
@@ -32,17 +32,24 @@
             <div class="col-xl-4 col-lg-6 col-md-8 offset-xl-4 offset-lg-3 offset-md-2">
                 <div class="theme-card">
                     <h3 class="text-center">Login</h3>
-                    <form class="theme-form">
+                    <form class="theme-form" action="<?= ROOT ?>actions/login.php" method="POST">
+                        <div class="form-group">
+                            <?php
+                            if (isset($_SESSION['login'])) {
+                                echo $_SESSION['login'];
+                            }
+                            ?>
+                        </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                            <input type="text" class="form-control" id="email" placeholder="Email" required="" name="email">
                         </div>
                         <div class="form-group">
                             <label for="review">Password</label>
-                            <input type="password" class="form-control" id="review" placeholder="Enter your password" required="">
+                            <input type="password" class="form-control" id="review" placeholder="Enter your password" required="" name="password">
                         </div>
-                        <a href="#" class="btn btn-normal">Login</a>
-                        <a class="float-right txt-default mt-2" href="forgot-pwd" id="fgpwd">Forgot your password?</a>
+                        <input="submoit" class="btn btn-normal" name="login">Login</a>
+                            <a class="float-right txt-default mt-2" href="forgot-pwd" id="fgpwd">Forgot your password?</a>
                     </form>
                     <p class="mt-3">Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.</p>
                     <a href="register" class="txt-default pt-3 d-block">Create an Account</a>
@@ -56,7 +63,7 @@
 
 <!--footer start-->
 <?php
-    require_once(APP_ROOT . DS . 'includes' . DS . 'footer.php');
+require_once(APP_ROOT . DS . 'includes' . DS . 'footer.php');
 ?>
 <!--footer end-->
 
@@ -257,7 +264,9 @@
                     <div class="media">
                         <a href="#"><img alt="" class="mr-3" src="../assets/images/layout-1/media-banner/3.jpg"></a>
                         <div class="media-body">
-                            <a href="#"><h4>item name</h4></a>
+                            <a href="#">
+                                <h4>item name</h4>
+                            </a>
                             <h4>
                                 <span>sm</span>
                                 <span>, blue</span>
@@ -302,7 +311,7 @@
             </div>
         </div>
         <div class="setting-block">
-            <div >
+            <div>
                 <h5>language</h5>
                 <ul>
                     <li><a href="#">english</a></li>
@@ -322,5 +331,5 @@
 <!-- Add to setting bar end-->
 
 <?php
-    require_once(APP_ROOT . DS . 'includes' . DS . 'script.php');
+require_once(APP_ROOT . DS . 'includes' . DS . 'script.php');
 ?>

@@ -1,0 +1,43 @@
+
+if (isset($_POST['go'])) {
+    $img = $_FILES['my_file'];
+
+    $f_name = $img['name'];
+    $f_type = $img['type'];
+    $f_tmp = $img['tmp_name'];
+    $f_error = $img['error'];
+    $f_size = $img['size'];
+
+    
+
+    if (empty($f_name)) {
+        $error = $img_name . " field is empty";
+        createSession('error', $error);
+        redirect('admin/all_properties.php');
+    }
+
+    $terget_f = 'uploads/';
+    $new_fname = uniqid('', true);
+  
+
+    $file_extention = explode('.', $f_name);  
+    $file_extention = strtolower(end($file_extention));
+
+    $white_list = ['jpg', 'jpeg', 'png'];
+    $fname = $new_fname . '.' . $file_extention;
+    $locate =  $terget_f . $fname;
+    if (in_array($file_extention, $white_list)) {
+        if (!$f_error) {
+            $move_f = move_uploaded_file($f_tmp, $locate);
+
+            if ($move_f) {
+                $locate = 'uploads/' . $fname;
+                return $locate;
+            }
+        }
+    } else {
+        $error = $img_name . " file type is not an image";
+        createSession('error', $error);
+        redirect('admin/all_properties.php');
+    }
+}
