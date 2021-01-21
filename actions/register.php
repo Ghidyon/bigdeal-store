@@ -10,73 +10,52 @@ if (isset($_POST['register'])) {
 
     $user_data = ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'password' => $password];
     
-    dump_and_die($user_data);
     // Make a session of values inside input fields
     $_SESSION['register data'] = $user_data;
 
+    // Check empty field and throw error message
     $empty_field_error = empty_field($user_data);
 
-    // Check empty field and throw error message
     if (!empty($empty_field_error)) {
-        $_SESSION['message'] = $empty_field_error; // sets error message into the $_SESSION array
-        redirect('signup');
+        $_SESSION['message'] = msg_alert('danger', '🙏', $empty_field_error); // sets error message into the $_SESSION array
+        redirect('register');
     }
-
-    $password_match_error = password_match($user_data['password'], $user_data['confirm_password']);
-    
-    // Check if two passwords match and throw error message
-    if (!empty($password_match_error)) {
-        $_SESSION['message'] = $password_match_error;
-        redirect('signup');
-    }
-    
-    $password_strength_error = password_strength($user_data['password']);
 
     // Check if password exceeds 7 characters and throw error message
+    $password_strength_error = password_strength($password);
+    
     if (!empty($password_strength_error)) {
-        $_SESSION['message'] = $password_strength_error;
-        redirect('signup');
+        $_SESSION['message'] = msg_alert('danger', '🙏', $password_strength_error);
+        redirect('register');
     }
     
-    $check_phone_error = check_phone($user_data['phone']);
-
-    // Check for valid phone number and throw error message
-    if (!empty($check_phone_error)) {
-        $_SESSION['message'] = $check_phone_error;
-        redirect('signup');
-    }
-
+    // Check for valid email and throw error message
     $check_email_error = validate_email($user_data['email']);
 
-    // Check for valid email and throw error message
     if (!empty($check_email_error)) {
-        $_SESSION['message'] = $check_email_error;
-        redirect('signup');
+        $_SESSION['message'] = msg_alert('danger','🙏', $check_email_error);
+        redirect('register');
     }
 
-    $password_hash = hash_password($user_data['password'], $user_data['confirm_password']);
- 
-    $check_user_data = ['name' => $name, 'phone' => $phone, 'email' => $email];
-
-    $user_exist = validate_account('users', $check_user_data, $conn);
+    $hashed_password = hash_password($password);
 
     // Check if user data exists already on the database and throw error    
+    $user_exist = validate_account('users', $user_data, $conn);
+
     if ($user_exist) {
-        $_SESSION['message'] = $user_exist;
-        redirect('signup');
+        $_SESSION['message'] = msg_alert('danger', '🙄', $user_exist);
+        redirect('register');
     }
 
-    // 
-    $sql = "INSERT INTO users (name, phone, email, password) VALUES ('$name', '$phone', '$email', '$password_hash')";
+    // Insert User details into the created database
+    $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$hashed_password')";
 
     if ( $conn->query($sql) ) {
         $conn->close(); // close connection
-        $_SESSION['successful_message'] = 'Successfully Registered! 😊';
-        $_SESSION['login data'] = '';
-        redirect('login');
+        redirect('home');
     } else {
-        $_SESSION['message'] = 'Something went wrong 😢, Try again!';
-        redirect('signup');
+        $_SESSION['message'] = msg_alert('danger', '😢', 'Something went wrong, Try again!');
+        redirect('register');
     }
 
 } else {
