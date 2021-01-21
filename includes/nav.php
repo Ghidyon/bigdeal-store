@@ -110,7 +110,7 @@
             </ul>
           </div>
           <div class="logo-block">
-            <a href="index.html"><img src="<?=ROOT?>assets/images/layout-2/logo/logo.png" class="img-fluid" alt="logo"></a>
+            <a href="home"><img src="<?=ROOT?>assets/images/layout-2/logo/logo.png" class="img-fluid" alt="logo"></a>
           </div>
           <div class="input-block">
             <div class="input-box">
@@ -211,7 +211,7 @@
                     <!-- <li>
                       <a href="#" class="dark-menu-item">Home</a>
                       <ul>
-                        <li><a target="_blank" href="index.html">layout 1</a></li>
+                        <li><a target="_blank" href="home">layout 1</a></li>
                         <li><a target="_blank" href="layout-2.html">layout 2</a></li>
                         <li><a target="_blank" href="layout-3.html">layout 3</a></li>
                         <li><a target="_blank" href="layout-4.html">layout 4</a></li>
@@ -382,7 +382,7 @@
                                     <ul>
                                       <li><a href="layout-5.html">cart modal popup</a></li>
                                       <li><a href="layout-6.html">qty. counter </a></li>
-                                      <li><a href="index.html">cart top</a></li>
+                                      <li><a href="home">cart top</a></li>
                                       <li><a href="layout-2.html">cart bottom</a></li>
                                       <li><a href="layout-3.html">cart left</a></li>
                                       <li><a href="layout-4.html">cart right</a></li>

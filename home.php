@@ -5673,10 +5673,11 @@
 </section>
 <!--contact banner end-->
 
+<!--footer start-->
 <?php 
     require_once(APP_ROOT . DS . 'includes' . DS . 'footer.php');
 ?>
-
+<!--footer end-->
 
 <!-- tap to top -->
 <div class="tap-top">
