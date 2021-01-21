@@ -19,9 +19,9 @@ function redirect($location)
 // processing alert message using bootstrap alert
 function msg_alert($alert_type, $expression, $text)
 {
-    $msg = "<div class='alert alert-$alert_type alert-dismissible fade show' role='alert' style='border-radius:70px; overflow:hidden'>
-    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-    <strong>$expression</strong> $text
+    $msg = "<div class='alert alert-$alert_type alert-dismissible fade show' role='alert' style='overflow:hidden'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+    <strong>$text</strong> $expression
     </div>";
 
     return $msg;
@@ -96,6 +96,14 @@ function validate_account($table_name, $user_array, $database)
         }
     }
     return false;
+}
+
+// To generate a -n digit random number
+function random_number($digit) {
+    $min = pow(10, ($digit - 1)); // minimum value
+    $max = pow(10, $digit) - 1; // maximum value
+    $value = mt_rand($min, $max);
+    return $value;
 }
 
 function get_user_details($table_name, $user_array, $database)

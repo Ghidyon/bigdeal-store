@@ -35,6 +35,15 @@
                     <form class="theme-form" action="<?=ROOT?>actions/register.php" method="POST">
                         <div class="form-row">
                             <div class="col-md-12 form-group">
+                                <?php
+                                if (isset($_SESSION['message'])) {
+                                    echo $_SESSION['message'];
+                                }                                
+                                ?>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 form-group">
                                 <label for="email">First Name</label>
                                 <input type="text" class="form-control" id="fname" name="first_name" placeholder="First Name" required="">
                             </div>

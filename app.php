@@ -9,7 +9,7 @@
     define('HOST', '127.0.0.1'); // server_name
     define('USERNAME', 'root');
     define('PASSWORD', '');
-    define('DBNAME', 'hiapp_user_data');
+    define('DBNAME', 'store');
     
     // folder handle
     define('SITE_NAME', 'Big Deal - Multi-purpose E-commerce Store');

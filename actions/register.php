@@ -47,8 +47,14 @@ if (isset($_POST['register'])) {
         redirect('register');
     }
 
+    do {
+        $user_id = random_number(5);
+        $sql = "SELECT * FROM users user_id WHERE user_id = '$user_id'";
+        $result = $conn->query($sql);
+    } while ($result->num_rows > 0);
+    
     // Insert User details into the created database
-    $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES ('$first_name', '$last_name', '$email', '$hashed_password')";
+    $sql = "INSERT INTO users (user_id, first_name, last_name, email, password) VALUES ('$user_id', '$first_name', '$last_name', '$email', '$hashed_password')";
 
     if ( $conn->query($sql) ) {
         $conn->close(); // close connection
