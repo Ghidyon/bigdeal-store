@@ -3,14 +3,14 @@ require_once('../app.php');
 
 // When form submit button is clicked, start validation
 if (isset($_POST['register'])) {
-    $name = sanitize($_POST["name"]);
+    $first_name = sanitize($_POST["first_name"]);
+    $last_name = sanitize($_POST["last_name"]);
     $email = sanitize($_POST["email"]);
-    $phone = sanitize($_POST["phone"]);
     $password = sanitize($_POST["password"]);
-    $c_password = sanitize($_POST["c_password"]);
 
-    $user_data = ['name' => $name, 'phone' => $phone, 'email' => $email, 'password' => $password, 'confirm_password' => $c_password];
-
+    $user_data = ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'password' => $password];
+    
+    dump_and_die($user_data);
     // Make a session of values inside input fields
     $_SESSION['register data'] = $user_data;
 

@@ -32,27 +32,27 @@
             <div class="col-lg-4 offset-lg-4">
                 <div class="theme-card">
                     <h3 class="text-center">Create account</h3>
-                    <form class="theme-form">
+                    <form class="theme-form" action="<?=ROOT?>actions/register.php" method="POST">
                         <div class="form-row">
                             <div class="col-md-12 form-group">
                                 <label for="email">First Name</label>
-                                <input type="text" class="form-control" id="fname" placeholder="First Name" required="">
+                                <input type="text" class="form-control" id="fname" name="first_name" placeholder="First Name" required="">
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="review">Last Name</label>
-                                <input type="text" class="form-control" id="lname" placeholder="Last Name" required="">
+                                <input type="text" class="form-control" id="lname" name="last_name" placeholder="Last Name" required="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 form-group">
                                 <label for="email">email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email" required="">
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="review">Password</label>
-                                <input type="password" class="form-control" id="review" placeholder="Enter your password" required="">
+                                <input type="password" class="form-control" id="review" name="password" placeholder="Enter your password" required="">
                             </div>
-                            <div class="col-md-12 form-group"><a href="#" class="btn btn-normal">create Account</a></div>
+                            <div class="col-md-12 form-group"><input type="submit" class="btn btn-normal" name="register" value="create account"></div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 ">
