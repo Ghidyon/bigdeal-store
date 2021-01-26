@@ -4,10 +4,10 @@ require_once('../app.php');
 
 // When the form submit button is clicked, start validation
 if (isset($_POST['login'])) {
-    $user_id = sanitize($_POST['email_or_phone']);
+    $email = sanitize($_POST['email']);
     $user_password = sanitize($_POST['password']);
 
-    $login_data = ["Email or Phone number" => $user_id, "password" => $user_password];
+    $login_data = ["email" => $email, "password" => $user_password];
 
     // Make a session of values inside input fields
     // $_SESSION['login data'] = $login_data; 
@@ -16,13 +16,12 @@ if (isset($_POST['login'])) {
     $empty_field_error = empty_field($login_data);
     
     if (!empty($empty_field_error)) {
-        $_SESSION['message'] = $empty_field_error;
+        $_SESSION['message'] = msg_alert('danger', '🙄', $empty_field_error);
         redirect('login');
     }
 
     // Get user details from the database 
-    $user_data = ['email' => $user_id, "password" => $user_password, 'phone' => $user_id];
-    $result = get_user_details('users', $user_data, $conn);
+    $result = get_user_details('users', $login_data, $conn);
 
     if ($result->num_rows > 0) {
         // Fetch results from database and display in an array
@@ -35,13 +34,12 @@ if (isset($_POST['login'])) {
         // Compare password entered by user and hashed password gotten from database
         if (pass_match($user_password, $password)) {
             $_SESSION['user'] = $fetched_user_data; // if passwords match, create a user session containing user details
-            $_SESSION['login data'] = '';
-            redirect('chat');
+            redirect('home');
         } else {
-            $_SESSION['message'] = "🙄 Incorrect password";
+            $_SESSION['message'] = msg_alert('danger', '🙄', 'Incorrect password');
             redirect('login');
         }
-
+        
     } else {
         $_SESSION['message'] = "🙄 Invalid email or phone number";
         redirect('login');

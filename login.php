@@ -33,13 +33,13 @@ require_once(APP_ROOT . DS . 'includes' . DS . 'nav.php');
                 <div class="theme-card">
                     <h3 class="text-center">Login</h3>
                     <form class="theme-form" action="<?= ROOT ?>actions/login.php" method="POST">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <?php
-                            if (isset($_SESSION['login'])) {
-                                echo $_SESSION['login'];
-                            }
+                            /* if (isset($_SESSION['message'])) {
+                                echo $_SESSION['message'];
+                            } */
                             ?>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control" id="email" placeholder="Email" required="" name="email">
@@ -48,10 +48,10 @@ require_once(APP_ROOT . DS . 'includes' . DS . 'nav.php');
                             <label for="review">Password</label>
                             <input type="password" class="form-control" id="review" placeholder="Enter your password" required="" name="password">
                         </div>
-                        <input="submoit" class="btn btn-normal" name="login">Login</a>
+                        <input type="submit" class="btn btn-normal" name="login" value="Login">
                             <a class="float-right txt-default mt-2" href="forgot-pwd" id="fgpwd">Forgot your password?</a>
                     </form>
-                    <p class="mt-3">Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.</p>
+                    <p class="mt-3">Sign up for a free account at our store. Registration is quick and easy.
                     <a href="register" class="txt-default pt-3 d-block">Create an Account</a>
                 </div>
             </div>
